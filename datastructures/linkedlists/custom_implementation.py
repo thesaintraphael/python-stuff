@@ -89,6 +89,26 @@ class LinkedList:
 
         raise Exception(f"Node with data {targeted_node_data} not found")
 
+    def __getitem__(self, index: int) -> Node:
+
+        node = self.head
+
+        if node is None:
+            raise IndexError("Empty list")
+
+        if not index:
+            return self.head
+
+        count_iters = 0
+        while node is not None:
+            if count_iters == index:
+                return node
+
+            node = node.next
+            count_iters += 1
+
+        raise IndexError("list index out of range")
+
 
 llist = LinkedList()
 print(llist)
@@ -142,3 +162,6 @@ llist.remove_node("d")
 llist.remove_node("dd")
 print(llist)
 # a -> b -> c -> e -> None
+
+
+print(llist[3])
