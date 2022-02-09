@@ -28,6 +28,20 @@ class LinkedList:
             yield node
             node = node.next
 
+    def reverse(self):
+        previous = None
+        current = self.head
+        next_ = current.next
+
+        while current:
+            current.next = previous
+            previous = current
+            current = next_
+            if next_:
+                next_ = next_.next
+
+        self.head = previous
+
     def append_left(self, node: Node) -> None:
         node.next = self.head
         self.head = node
@@ -165,3 +179,6 @@ print(llist)
 
 
 print(llist[3])
+
+llist.reverse()
+print(llist)
