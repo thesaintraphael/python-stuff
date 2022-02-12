@@ -124,61 +124,58 @@ class LinkedList:
         raise IndexError("list index out of range")
 
 
-llist = LinkedList()
-print(llist)
+def main():
+    llist = LinkedList()
+    print(llist)
+
+    first_node = Node("a")
+    llist.head = first_node
+    # ("a -> None")
+
+    second_node = Node("b")
+    third_node = Node("c")
+
+    first_node.next = second_node
+    second_node.next = third_node
+
+    print(llist)
+
+    # a -> b -> c -> None
+
+    # for i in llist:
+    #     print(i, end=", ")  # iter ends at c -> None
+
+    print(llist)
+    llist.append_left(Node("d"))
+    print(llist)
+    # d -> a -> b -> c -> None
+
+    llist.append_right(Node("e"))
+    print(llist)
+    # d -> a -> b -> c -> e -> None
+
+    llist.add_after("c", Node("dd"))
+    print(llist)
+    # d -> a -> b -> c -> f -> dd -> None
+
+    llist.add_before("b", Node("bb"))
+    print(llist)
+    # d -> a -> bb -> b -> c -> dd -> e -> None
+
+    # llist.add_before("n", Node("l"))
+    # exception
+
+    llist.remove_node("bb")
+    llist.remove_node("d")
+    llist.remove_node("dd")
+    print(llist)
+    # a -> b -> c -> e -> None
+
+    print(llist[3])
+
+    llist.reverse()
+    print(llist)
 
 
-first_node = Node("a")
-llist.head = first_node
-# ("a -> None")
-
-second_node = Node("b")
-third_node = Node("c")
-
-first_node.next = second_node
-second_node.next = third_node
-
-
-print(llist)
-
-# a -> b -> c -> None
-
-
-# for i in llist:
-#     print(i, end=", ")  # iter ends at c -> None
-
-
-print(llist)
-llist.append_left(Node("d"))
-print(llist)
-# d -> a -> b -> c -> None
-
-
-llist.append_right(Node("e"))
-print(llist)
-# d -> a -> b -> c -> e -> None
-
-llist.add_after("c", Node("dd"))
-print(llist)
-# d -> a -> b -> c -> f -> dd -> None
-
-
-llist.add_before("b", Node("bb"))
-print(llist)
-# d -> a -> bb -> b -> c -> dd -> e -> None
-
-
-# llist.add_before("n", Node("l"))
-# exception
-
-llist.remove_node("bb")
-llist.remove_node("d")
-llist.remove_node("dd")
-print(llist)
-# a -> b -> c -> e -> None
-
-
-print(llist[3])
-
-llist.reverse()
-print(llist)
+if __name__ == '__main__':
+    main()
