@@ -1,3 +1,6 @@
+import datetime
+
+
 class Employee:
 
     num_of_emps = 0
@@ -25,19 +28,27 @@ class Employee:
         first, last, pay = emp_str.split("-")
         return cls(first, last, pay)
 
+    @staticmethod
+    def is_workday(day):
+        return day.weekday() not in [5, 6]
+
 
 emp_1 = Employee("Jon", "Snow", 2500)
 emp_2 = Employee("Rob", "Stark", 3500)
 
 
-emp_str_1 = "John-Doe-70000"
-new_emp1 = Employee.from_string(emp_str_1)
-print(new_emp1, "New Employee")
+date = datetime.date(2022, 2, 26)
+print(Employee.is_workday(date))
 
-Employee.set_raise_amount(1.6)  # calling with instance also possible
 
-print(Employee.raise_amount)  # 1.6
-print(emp_2.raise_amount)  # 1.6
+# emp_str_1 = "John-Doe-70000"
+# new_emp1 = Employee.from_string(emp_str_1)
+# print(new_emp1, "New Employee")
+
+# Employee.set_raise_amount(1.6)  # calling with instance also possible
+
+# print(Employee.raise_amount)  # 1.6
+# print(emp_2.raise_amount)  # 1.6
 
 
 # emp_1.raise_amount = 1.05  # changes raise amount variable only for this object
