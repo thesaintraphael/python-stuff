@@ -30,7 +30,7 @@ class Manager(Employee):
         self.employees = [] if employees is None else employees
 
     def add_emp(self, emp):
-        if emp not in self.employees and (issubclass(emp, Employee) or isinstance(emp, Employee)):
+        if emp not in self.employees:
             self.employees.append(emp)
 
     def remove_emp(self, emp):
