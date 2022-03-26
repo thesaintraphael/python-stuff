@@ -28,12 +28,18 @@ class Comment:
     # setting default value field(default="") also possible
     text: str = ""
 
+    search_string: str = field(init=False)
+
     # setting deafutl value to non primitive data types
     replies: list[int] = field(
         default_factory=list, compare=False, hash=False, repr=False)
 
     # replies won't be used in while comparing objects,
     # hashing and representation
+
+    def __post_init__(self):
+        # self.search_string = f'{self.id_} {self.text}' # possible is frozen is False
+        object.__setattr__(self, "search_string", f'{self.id_} {self.text}')
 
 
 def main():
