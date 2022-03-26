@@ -4,6 +4,12 @@ from dataclasses import dataclass, field, astuple, asdict
 from pprint import pprint
 
 import inspect
+import random
+import string
+
+
+def generate_slug() -> str:
+    return "".join(random.choices(string.ascii_letters, k=12))
 
 
 # frozen => default: False, when True
@@ -20,6 +26,7 @@ class Comment:
 
     # setting default value field(default="") also possible
     text: str = ""
+    slug: str = field(default_factory=generate_slug)
 
     # setting deafutl value to non primitive data types
     replies: list[int] = field(
