@@ -19,6 +19,15 @@ def generate_id() -> str:
 # order => default: False, when True dc generates
 # following methods: __ge__, __gt__, __le__, __lt__
 
+# kw_only => default: False, when True,
+# you should pass kwargs to init object: Comment(text="hello world")
+# Comment("Hello wolrd") raise an error
+# Available in python 3.10+
+
+# Other for Python 3.10+
+
+# match_args => default: False, ((dis)allowing using match cases)
+
 
 @dataclass(frozen=True, order=True)
 class Comment:
@@ -32,14 +41,15 @@ class Comment:
 
     # setting deafutl value to non primitive data types
     replies: list[int] = field(
-        default_factory=list, compare=False, hash=False, repr=False)
+        default_factory=list, compare=False, hash=False, repr=False
+    )
 
     # replies won't be used in while comparing objects,
     # hashing and representation
 
     def __post_init__(self):
         # self.search_string = f'{self.id_} {self.text}' # possible is frozen is False
-        object.__setattr__(self, "search_string", f'{self.id_} {self.text}')
+        object.__setattr__(self, "search_string", f"{self.id_} {self.text}")
 
 
 def main():
