@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from functools import partial
 import timeit
-from unicodedata import name
 
 
 # using __dict__ method to access instance variables
