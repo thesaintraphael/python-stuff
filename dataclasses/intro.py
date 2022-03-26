@@ -8,7 +8,7 @@ import random
 import string
 
 
-def generate_slug() -> str:
+def generate_id() -> str:
     return "".join(random.choices(string.ascii_letters, k=12))
 
 
@@ -22,11 +22,11 @@ def generate_slug() -> str:
 
 @dataclass(frozen=True, order=True)
 class Comment:
-    id_: int
+    id_: str = field(init=False, default_factory=generate_id)
+    # id_ will get only values from generate_id
 
     # setting default value field(default="") also possible
     text: str = ""
-    slug: str = field(default_factory=generate_slug)
 
     # setting deafutl value to non primitive data types
     replies: list[int] = field(
@@ -37,7 +37,7 @@ class Comment:
 
 
 def main():
-    comment = Comment(1, "First comment")
+    comment = Comment("First comment")
     # comment.id_ = 3  # raises an error, because frozen is True
 
     print(comment)  # Comment(id_=1, text='First comment') (auto __repr__)
