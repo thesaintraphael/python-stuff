@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field, astuple, asdict
+from typing import ClassVar
 from pprint import pprint
 
 import inspect
@@ -46,6 +47,10 @@ class Comment:
 
     # replies won't be used in while comparing objects,
     # hashing and representation
+
+    # Class Variavble
+
+    class_var: ClassVar[str] = "class var"
 
     def __post_init__(self):
         # self.search_string = f'{self.id_} {self.text}' # possible is frozen is False
