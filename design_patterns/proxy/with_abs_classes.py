@@ -1,5 +1,4 @@
 from abc import ABCMeta, abstractstaticmethod
-from re import S
 
 
 class IPerson(metaclass=ABCMeta):

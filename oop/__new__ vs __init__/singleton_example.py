@@ -14,6 +14,6 @@ class Singleton:
 if __name__ == "__main__":
 
     obj_1 = Singleton()
-    obj_2 = Singleton()  # does not creating new obkect, instead returning previous
+    obj_2 = Singleton()  # does not creating new object, instead returning previous
 
-    print(f'{obj_1 is obj_2 = }')
+    print(f"{obj_1 is obj_2 = }")
