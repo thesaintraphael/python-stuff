@@ -13,7 +13,7 @@ class Marksheet:
     @cached_property
     def average(self):
         print("Calculating average.")
-        return self.total/len(self.grades)
+        return self.total / len(self.grades)
 
 
 m = Marksheet(100, 90, 95)
