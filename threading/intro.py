@@ -19,4 +19,9 @@ if __name__ == "__main__":
     # Main thread waits for this thread to be completed and
     # then executes the rest of the script when .join() is used
 
+    thread2 = threading.Thread(target=sleep_, args=(5,), daemon=True)
+    thread2.start()
+
+    # Daemon Thread is being terminate when the main process is done. It is not waited to be completed
+
     print("Main done")
