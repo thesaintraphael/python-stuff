@@ -16,14 +16,18 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     print(f"Result: {f1.result()}")  # kind of "waiting around" and gettig the result
 
 
-# TPE with loops
-
 with concurrent.futures.ThreadPoolExecutor() as executor:
+
+    """Using map instead of list comprehension
+
+    NOTE: passing arguments to non argument function here can cause "silent"
+        error that may debugging proccess harder
+
+    """
 
     seconds = [5, 4, 3, 2, 1]
 
-    future_objects = [executor.submit(sleep_, sec) for sec in seconds]
+    results = executor.map(sleep_, seconds)
 
-    for future_object in concurrent.futures.as_completed(future_objects):
-        # Printing out result of each proccess when it is completed
-        print(future_object.result())
+    for result in results:
+        print(result)
