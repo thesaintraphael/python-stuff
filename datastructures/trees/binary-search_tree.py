@@ -2,9 +2,6 @@
 # greater than all of their left child nodes and less than all of their right child nodes.
 
 
-from re import I
-
-
 class Node:
     def __init__(self, val=None) -> None:
         self.left = None
@@ -92,7 +89,7 @@ class Node:
         return vals
 
     def delete(self, val):
-        
+
         if val < self.val:
             if self.left:
                 self.left = self.left.delete(val)
@@ -101,9 +98,9 @@ class Node:
             if self.right:
                 self.right = self.right.delete(val)
             return self
-        if self.right == None:
+        if self.right is None:
             return self.left
-        if self.left == None:
+        if self.left is None:
             return self.right
         min_larger_node = self.right
         while min_larger_node.left:
