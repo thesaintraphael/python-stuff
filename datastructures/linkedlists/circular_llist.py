@@ -7,7 +7,6 @@ from linkedlists import Node
 
 
 class CircularLinkedList:
-
     def __init__(self) -> None:
         self.head = None
 
@@ -17,7 +16,7 @@ class CircularLinkedList:
             starting_point = self.head
 
         node = starting_point
-        while node is not None and (node.next != starting_point):
+        while node is not None and (node.next != node):
             yield node
             node = node.next
 
@@ -25,10 +24,7 @@ class CircularLinkedList:
 
     def print_list(self, starting_point=None):
 
-        nodes = []
-        for node in self.traverse(starting_point=starting_point):
-            nodes.append(str(node))
-
+        nodes = [str(node) for node in self.traverse(starting_point=starting_point)]
         print(" -> ".join(nodes))
 
 
