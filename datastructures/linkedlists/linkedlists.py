@@ -1,3 +1,6 @@
+from decorators import not_empty
+
+
 class Node:
     def __init__(self, data) -> None:
         self.data = data
@@ -8,7 +11,6 @@ class Node:
 
 
 class LinkedList:
-
     def __init__(self) -> None:
         self.head = None
 
@@ -57,21 +59,18 @@ class LinkedList:
 
     # insrting between 2 Nodes
 
-    def add_after(self, targed_node_data, new_node: Node) -> None:
-        if self.head is None:
-            raise Exception("List is empty")
-
+    @not_empty
+    def add_after(self, targeted_node_data, new_node: Node) -> None:
         for node in self:
-            if node.data == targed_node_data:
+            if node.data == targeted_node_data:
                 new_node.next = node.next
                 node.next = new_node
                 return
 
-        raise Exception(f"Node with data {targed_node_data} not found")
+        raise ValueError(f"Node with data {targeted_node_data} not found")
 
+    @not_empty
     def add_before(self, targeted_node_data, new_node: Node):
-        if self.head is None:
-            raise Exception("Lits is empty")
 
         if self.head.data == targeted_node_data:
             return self.append_left(new_node)
@@ -84,11 +83,10 @@ class LinkedList:
                 return
             prev_node = node
 
-        raise Exception(f"Node with data {targeted_node_data} not found")
+        raise ValueError(f"Node with data {targeted_node_data} not found")
 
+    @not_empty
     def remove_node(self, targeted_node_data):
-        if self.head is None:
-            raise Exception("List is empty")
 
         if self.head.data == targeted_node_data:
             self.head = self.head.next
@@ -101,7 +99,7 @@ class LinkedList:
                 return
             previous_node = node
 
-        raise Exception(f"Node with data {targeted_node_data} not found")
+        raise ValueError(f"Node with data {targeted_node_data} not found")
 
     def __getitem__(self, index: int) -> Node:
 
@@ -126,7 +124,6 @@ class LinkedList:
 
 def main():
     llist = LinkedList()
-    print(llist)
 
     first_node = Node("a")
     llist.head = first_node
@@ -177,5 +174,5 @@ def main():
     print(llist)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
