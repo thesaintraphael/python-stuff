@@ -2,7 +2,7 @@
 # greater than all of their left child nodes and less than all of their right child nodes.
 
 
-class Node:
+class TreeNode:
     def __init__(self, val=None) -> None:
         self.left = None
         self.right = None
@@ -21,13 +21,13 @@ class Node:
             if self.left:
                 self.left.insert(val)
                 return
-            self.left = Node(val)
+            self.left = TreeNode(val)
             return
 
         if self.right:
             self.right.insert(val)
             return
-        self.right = Node(val)
+        self.right = TreeNode(val)
 
     def get_min(self):
         current = self
@@ -57,36 +57,34 @@ class Node:
             return False
         return self.right.exists(val)
 
-    def inorder(self, vals):
-
-        if self.left:
-            self.left.inorder(vals)
+    def preorder(self):
 
         if self.val:
-            vals.append(self.val)
+            print(self.val, end=" ")
+
+        if self.left:
+            self.left.preorder()
 
         if self.right:
-            self.right.inorder(vals)
+            self.right.preorder()
 
-        return vals
+    def inorder(self):
+        if self.left:
+            self.left.inorder()
 
-    def preorder(self, vals):
-        if self.val is not None:
-            vals.append(self.val)
-        if self.left is not None:
-            self.left.preorder(vals)
-        if self.right is not None:
-            self.right.preorder(vals)
-        return vals
+        print(self.val, end=" ")
 
-    def postorder(self, vals):
-        if self.left is not None:
-            self.left.postorder(vals)
-        if self.right is not None:
-            self.right.postorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        return vals
+        if self.right:
+            self.right.inorder()
+
+    def postorder(self):
+        if self.left:
+            self.left.postorder()
+
+        if self.right:
+            self.right.postorder()
+
+        print(self.val, end=" ")
 
     def delete(self, val):
 
@@ -109,31 +107,35 @@ class Node:
         self.right = self.right.delete(min_larger_node.val)
         return self
 
+    def size(self):
+        if self is None:
+            return 0
+
+        return 1 + TreeNode.size(self.left) + TreeNode.size(self.right)
+
+    def height(self):
+        if self is None:
+            return 0
+
+        return 1 + max(TreeNode.height(self.left), TreeNode.height(self.right))
+
 
 def main():
     nums = [12, 6, 18, 19, 21, 11, 3, 5, 4, 24, 18]
-    tree = Node()
+    tree = TreeNode()
 
     for num in nums:
         tree.insert(num)
 
     print("preorder:")
-    print(tree.preorder([]))
-    print()
+    tree.preorder()
+    print("\ninorder:")
+    tree.inorder()
+    print("\npostorder")
+    tree.postorder()
 
-    print("postorder:")
-    print(tree.postorder([]))
-    print()
-
-    print("inorder:")
-    print(tree.inorder([]))
-    print()
-
-    print(f"Max values is: {tree.get_max()}")
-    print(f"Min values is: {tree.get_min()}")
-
-    print(tree.delete(3).val)
-    print(tree.inorder([]))
+    print(f"\nSize of the tree {tree.size()}")
+    print(f"Height of the tree {tree.height()}")
 
 
 if __name__ == "__main__":
