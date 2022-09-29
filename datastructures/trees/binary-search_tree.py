@@ -2,6 +2,9 @@
 # greater than all of their left child nodes and less than all of their right child nodes.
 
 
+from platform import node
+
+
 class TreeNode:
     def __init__(self, val=None) -> None:
         self.left = None
@@ -115,6 +118,18 @@ class TreeNode:
 
         return 1 + max(TreeNode.height(self.left), TreeNode.height(self.right))
 
+    def is_balanced(self):
+        if self is None:
+            return True, 0
+
+        balanced_l, height_l = TreeNode.is_balanced(self.left)
+        balanced_r, height_r = TreeNode.is_balanced(self.right)
+
+        balanced = balanced_r and balanced_l and abs(height_l - height_r) <= 1
+        height = 1 + max(height_r, height_l)
+
+        return balanced, height
+
 
 def main():
     nums = [12, 6, 18, 19, 21, 11, 3, 5, 4, 24, 18]
@@ -132,6 +147,8 @@ def main():
 
     print(f"\nSize of the tree {tree.size()}")
     print(f"Height of the tree {tree.height()}")
+
+    print(f"is_balanced, {tree.is_balanced()}")
 
 
 if __name__ == "__main__":
