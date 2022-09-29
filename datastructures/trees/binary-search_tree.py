@@ -49,13 +49,9 @@ class TreeNode:
             return True
 
         if val < self.val:
-            if self.left is None:
-                return False
-            return self.left.exists(val)
+            return False if self.left is None else self.left.exists(val)
 
-        if self.right is None:
-            return False
-        return self.right.exists(val)
+        return False if self.right is None else self.right.exists(val)
 
     def preorder(self):
 
