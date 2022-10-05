@@ -2,13 +2,13 @@ import functools
 
 
 def start_end_decorator(func):
-
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         print("start")
         result = func(*args, **kwargs)
         print("end")
         return result
+
     return wrapper
 
 
@@ -22,13 +22,14 @@ def debug(func):
         result = func(*args, **kwargs)
         print(f"{func.__name__!r} returned {result!r}")
         return result
+
     return wrapper
 
 
-@debug
+@debug  # executes first
 @start_end_decorator
 def say_hello(name):
-    greeting = f'Hello {name}'
+    greeting = f"Hello {name}"
     print(greeting)
     return greeting
 
