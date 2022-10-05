@@ -1,6 +1,8 @@
-class CountCalls:
+from typing import Callable
 
-    def __init__(self, func) -> None:
+
+class CountCalls:
+    def __init__(self, func: Callable) -> None:
         self.func = func
         self.times_called = 0
 
