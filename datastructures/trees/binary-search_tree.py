@@ -2,9 +2,6 @@
 # greater than all of their left child nodes and less than all of their right child nodes.
 
 
-from platform import node
-
-
 class TreeNode:
     def __init__(self, val=None) -> None:
         self.left = None
