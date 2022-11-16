@@ -108,3 +108,6 @@ if __name__ == "__main__":
     print("a" in hash_map)  # False
 
     print(hash_map)  # {'b': 2}
+
+
+# TODO: Use linear probing to handle hashing collisions
