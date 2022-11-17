@@ -1,8 +1,9 @@
 from typing import Any
 from collections import deque
+from mixins import IterableMixin
 
 
-class Queue:
+class Queue(IterableMixin):
     def __init__(self, *elements: Any):
         self._elements = deque(elements)
 
@@ -14,13 +15,6 @@ class Queue:
 
     def empty(self) -> bool:
         return not self._elements
-
-    def __len__(self):
-        return len(self._elements)
-
-    def __iter__(self):
-        while len(self) > 0:
-            yield self.dequeue()
 
 
 fifo = Queue()

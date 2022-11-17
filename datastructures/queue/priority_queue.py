@@ -1,8 +1,10 @@
 from heapq import heappush, heappop
 from itertools import count
 
+from mixins import IterableMixin
 
-class PriorityQueue:
+
+class PriorityQueue(IterableMixin):
     def __init__(self) -> None:
         self._elements = []
         self._counter = count()
