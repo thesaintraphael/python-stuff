@@ -1,7 +1,7 @@
 import functools
 
 
-def double_nummber(func):
+def double_number(func):
     @functools.wraps(func)
     def wrapper(number: int) -> int:
         number = func(number)
@@ -10,7 +10,7 @@ def double_nummber(func):
     return wrapper
 
 
-@double_nummber
+@double_number
 def return_number(number: int) -> int:
     return number
 
