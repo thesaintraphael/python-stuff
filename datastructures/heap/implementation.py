@@ -1,8 +1,22 @@
 # implementing min HEAP data structure with list
 
+import functools
+
 
 class EmptyHeapException(Exception):
     pass
+
+
+def not_empty_heap(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        heap = args[0]
+        if heap.size == 0:
+            raise EmptyHeapException("Operation cannot be performed on empty heap")
+
+        return func(*args, **kwargs)
+
+    return wrapper
 
 
 class MinHeap:
@@ -57,16 +71,12 @@ class MinHeap:
         if self.size == self._capacity:
             self._capacity *= 2
 
+    @not_empty_heap
     def peek(self):
-        if self.size == 0:
-            raise EmptyHeapException("Operation on empty heap cannot be performed")
-
         return self._elements[0]
 
+    @not_empty_heap
     def pop(self) -> int:
-        if self.size == 0:
-            raise EmptyHeapException("Operation on empty heap cannot be performed")
-
         element = self._elements[0]
         self._elements[0] = self._elements.pop()
         self.heapify_down()
