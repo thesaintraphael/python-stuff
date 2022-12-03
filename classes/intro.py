@@ -11,7 +11,7 @@ class Employee:
         self.first = first
         self.last = last
         self.pay = pay
-        self.email = f'{first}.{last}@comp.com'
+        self.email = f"{first}.{last}@comp.com"
 
         Employee.num_of_emps += 1
 
@@ -53,7 +53,9 @@ print(Employee.is_workday(date))
 
 # emp_1.raise_amount = 1.05  # changes raise amount variable only for this object
 
-# print("raise_amount" in emp_1.__dict__)  # True
+# print(
+#     "raise_amount" in emp_1.__dict__
+# )  # True (because of code in line 54, we assigned value to emp_1.raise_amount)
 # print("raise_amount" in emp_2.__dict__)  # False but still accesible
 
 
