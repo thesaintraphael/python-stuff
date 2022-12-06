@@ -19,10 +19,10 @@ if __name__ == "__main__":
     person3 = PersonSimple("Rafael")
     person4 = PersonSimple("Rafael")
 
-    set_ = set([person1, person2])
+    set_ = {person1, person2}
     print(set_)  # {Person(name='Rafael')} only one object
 
-    set_1 = set([person3, person4])
+    set_1 = {person3, person4}
     print(set_1)  # both objects present
 
 
